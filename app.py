@@ -2,7 +2,7 @@ from flask import Flask, g
 from flask_cors import CORS
 
 import models
-from resources.goals import goal
+from resources.goals import goals
 
 DEBUG = True
 PORT = 8000
@@ -22,10 +22,10 @@ def after_request(response):
     g.db.close()
     return response
 
-CORS(goal, origins=['http://localhost:3000'], supports_credentials=True) 
+CORS(goals, origins=['http://localhost:3000'], supports_credentials=True) 
 
 
-app.register_blueprint(goal, url_prefix='/api/v1/goals')
+app.register_blueprint(goals, url_prefix='/api/v1/goals')
 
 @app.route('/')
 def index():
